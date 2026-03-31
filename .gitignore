@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+.env
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Cryptographic Keys & Certificates (SENSITIVE)
+secret.key
+secret_ca.key
+*.key
+*.pem
+
+# Certificates
+pk.cert
+*.cert
+
+# Generated/Runtime Files from Demo
+response.bin
+tag.txt
+*.bin
+
+# Testing & Temporary
+.pytest_cache/
+.coverage
+htmlcov/
+*.tmp
+test_*.py
+*_test.py
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.log
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# IPython/Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Project-specific (optional, for production)
+# .server_pid
+# .client_pid
