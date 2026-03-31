@@ -152,13 +152,13 @@ def encrypt_data_gcm(data, session_key=None):
         session_key = KEY
     
     plaintext = json.dumps(data).encode()
+    nonce = os.urandom(12)
     
     # Create GCM cipher (automatically generates 12-byte nonce)
-    cipher = Cipher(algorithms.AES(session_key), modes.GCM(os.urandom(12)))
+    cipher = Cipher(algorithms.AES(session_key), modes.GCM(nonce))
     encryptor = cipher.encryptor()
     ciphertext = encryptor.update(plaintext) + encryptor.finalize()
     tag = encryptor.tag
-    nonce = cipher.mode.nonce
     
     return nonce, ciphertext, tag
 
