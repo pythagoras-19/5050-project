@@ -18,9 +18,9 @@ from cryptography.hazmat.primitives import serialization
 print("[CA Key Generation]")
 print("Generating RSA-2048 key pair for Certification Authority...")
 
-# Generate RSA key pair for CA
+# Generate a RSA key pair for CA
 # public_exponent=65537: Standard RSA public exponent (2^16 + 1)
-# key_size=2048: 2048-bit RSA, sufficient for security through 2030 (NIST recommendation)
+# key_size=2048: 2048-bit RSA, sufficient for security through 2030 (NIST recommendation from my research)
 ca_private_key = rsa.generate_private_key(
     public_exponent=65537,
     key_size=2048,
@@ -30,7 +30,7 @@ ca_public_key = ca_private_key.public_key()
 # Save CA private key to "secret_ca.key"
 # Format: PEM (Human-readable, portable)
 # PrivateFormat.PKCS8: Standard format, compatible with utilities like OpenSSL
-# NoEncryption: Key stored in plaintext (only for lab use; use BestAvailableEncryption in production)
+# NoEncryption: Key stored in plaintext (only for lab use; use BestAvailableEncryption in production from my research)
 with open("secret_ca.key", "wb") as f:
     ca_private_pem = ca_private_key.private_bytes(
         encoding=serialization.Encoding.PEM,

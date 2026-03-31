@@ -217,33 +217,33 @@ def get_encrypted_weather(session_key, replay_check):
         tag = base64.b64decode(data["tag"])
         sequence = data.get("sequence", 0)
         
-        print(f"  ✓ Received response (seq={sequence})")
+        print(f"    Received response (seq={sequence})")
         print(f"    Nonce: {nonce.hex()}")
         print(f"    Ciphertext: {len(ciphertext)} bytes")
         print(f"    Tag: {tag.hex()}")
         
         # ===== SECURITY CHECK 1: Replay Protection =====
-        print(f"  → Checking replay protection (sequence number)...")
+        print(f"   Checking replay protection (sequence number)...")
         if not replay_check.accept_seq(sequence):
-            print(f"  ✗ REPLAY ATTACK DETECTED!")
+            print(f"    REPLAY ATTACK DETECTED!")
             print(f"    Received seq={sequence}, but expected > {replay_check.sequence_number - 1}")
             return None, None
-        print(f"  ✓ Sequence number valid (fresh message)")
+        print(f"     Sequence number valid (fresh message)")
         
         # ===== SECURITY CHECK 2: GCM Authentication =====
-        print(f"  → Verifying GCM authentication tag...")
+        print(f"    Verifying GCM authentication tag...")
         try:
             plaintext = decrypt_data_gcm(nonce, ciphertext, tag, session_key)
-            print(f"  ✓ GCM verification passed (data is authentic & confidential)")
+            print(f"    GCM verification passed (data is authentic & confidential)")
             return plaintext, sequence
             
         except Exception as e:
-            print(f"  ✗ GCM AUTHENTICATION FAILED: {e}")
+            print(f"    GCM AUTHENTICATION FAILED: {e}")
             print(f"    This indicates data tampering or wrong key!")
             return None, None
             
     except Exception as e:
-        print(f"  ✗ Error fetching weather: {e}")
+        print(f"    Error fetching weather: {e}")
         return None, None
 
 

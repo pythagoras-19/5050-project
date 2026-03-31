@@ -29,20 +29,20 @@ print("[RSA Key Generation]")
 print("Generating RSA-2048 key pair for server...")
 
 # Generate RSA key pair
-# - public_exponent=65537: RSA public exponent (2^16 + 1)
-#   This is the standard choice: balance between security and speed
-#   Prevents timing attacks compared to other exponents
-# - key_size=2048: 2048-bit RSA key
-#   NIST recommends 2048-bit minimum for security through 2030
-#   256-bit AES + 2048-bit RSA is well-matched
+#public_exponent=65537: RSA public exponent (2^16 + 1)
+#This is the standard choice: balance between security and speed from my understanding
+#prevents timing attacks compared to other exponents
+#key_size=2048: 2048-bit RSA key
+#NIST recommends 2048-bit minimum for security through 2030 from my research
+#256-bit AES + 2048-bit RSA is well-matched
 private_key = rsa.generate_private_key(
     public_exponent=65537,
     key_size=2048,
 )
 public_key = private_key.public_key()
 
-# Save private key to "secret.key"
-# Format: PEM (Privacy Enhanced Mail - human readable, ASCII-based)
+# Lets save private key to "secret.key"
+# in the format: PEM (Privacy Enhanced Mail - human readable, ASCII-based)
 # PrivateFormat.PKCS8: Public Key Cryptography Standards #8
 #   - Standard format, compatible with OpenSSL, Java, etc.
 #   - Stores algorithm identifier + key material
@@ -62,7 +62,7 @@ with open("secret.key", "wb") as f:
 # Format: PEM
 # PublicFormat.SubjectPublicKeyInfo: Standard format for public keys
 #   - Can be freely distributed
-#   - Clients will use this for RSA encryption
+#   - clients will use this for RSA encryption
 with open("public.key", "wb") as f:
     public_pem = public_key.public_bytes(
         encoding=serialization.Encoding.PEM,
@@ -75,10 +75,10 @@ with open("public.key", "wb") as f:
 print("\n[RSA Key Generation Complete]")
 print(f"Key Size: {private_key.key_size} bits")
 print(f"Public Exponent: 65537")
-print(f"Files created:")
+print(f"Files created!!:")
 print(f"  - secret.key: Server private key (private/secure)")
 print(f"  - public.key: Server public key (public distribution)")
-print(f"\nNext steps:")
+print(f"\nthe next steps:")
 print(f"  1. Run keygen_ca.py to generate CA keys (Task 4)")
 print(f"  2. Run cert_key.py to create certificate (Task 4)")
 print(f"  3. Run server_upd.py to start secure server (Task 3+)")
