@@ -276,7 +276,7 @@ def main():
     # STEP 2b: RSA key exchange
     session_key = exchange_session_key(server_public_key_pem)
     if session_key is None:
-        print("\n✗ Failed to establish session key. Aborting.")
+        print("\nFailed to establish session key. Aborting.")
         return
     
     # Initialize replay protection for this session
@@ -295,7 +295,7 @@ def main():
             print(f"✗ Failed to get weather data.")
             continue
         
-        print(f"\n✓ SUCCESS - Weather data retrieved and verified:")
+        print(f"\nSUCCESS - Weather data retrieved and verified:")
         print(f"  Location: {weather['location']}")
         print(f"  Temperature: {weather['temperature_c']}°C ({weather['temperature_f']}°F)")
         print(f"  Condition: {weather['condition']}")
