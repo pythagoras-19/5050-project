@@ -18,7 +18,7 @@ Security Notes:
   - In production: use HSM (Hardware Security Module) for private key storage
 
 Files Generated:
-  - secret.key: RSA private key (KEEP SECURE - do not share)
+  - secret.key: RSA private key (KEEP SECURE - do not share!!)
   - public.key: RSA public key (send to clients)
 """
 

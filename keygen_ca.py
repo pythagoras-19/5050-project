@@ -1,15 +1,15 @@
 """
 Task 4.1: Certification Authority (CA) Key Generation
 
-This program generates an RSA key pair for the Certification Authority.
+This program generates an RSA key pair for the Certification Authority (CA) and saves them to files.
 The CA's private key will be used to sign server certificates.
-The CA's public key will be embedded in clients for certificate verification.
+The CA's public key will be embedded in clients for certificate verification (ensuring the server's public key is authentic).
 
 Security Notes:
-- RSA key size: 2048 bits (industry standard as of 2024)
+- RSA key size: 2048 bits (industry standard as of 2024 to my understanding)
 - Public exponent: 65537 (standard)
-- Private key is stored without password (this is for a lab environment)
-  In production, private keys should be encrypted with a passphrase
+- Private key is stored WITHOUT  password (this is for the lab environment)
+  In production, private keys SHOULD  be encrypted with a passphrase
 """
 
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -19,8 +19,8 @@ print("[CA Key Generation]")
 print("Generating RSA-2048 key pair for Certification Authority...")
 
 # Generate RSA key pair for CA
-# - public_exponent=65537: Standard RSA public exponent (2^16 + 1)
-# - key_size=2048: 2048-bit RSA, sufficient for security through 2030 (NIST recommendation)
+# public_exponent=65537: Standard RSA public exponent (2^16 + 1)
+# key_size=2048: 2048-bit RSA, sufficient for security through 2030 (NIST recommendation)
 ca_private_key = rsa.generate_private_key(
     public_exponent=65537,
     key_size=2048,
@@ -40,9 +40,9 @@ with open("secret_ca.key", "wb") as f:
     f.write(ca_private_pem)
     print(f"✅ CA Private key saved: secret_ca.key ({len(ca_private_pem)} bytes)")
 
-# Save CA public key to "public_ca.key"
-# Format: PEM, SubjectPublicKeyInfo (standard for public keys)
-# Can be shared with all clients
+#Save CA public key to "public_ca.key"
+#format: PEM, SubjectPublicKeyInfo (standard for public keys)
+#can be shared with all clients
 with open("public_ca.key", "wb") as f:
     ca_public_pem = ca_public_key.public_bytes(
         encoding=serialization.Encoding.PEM,
